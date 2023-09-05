@@ -24,7 +24,11 @@ data class BookModel (
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    var customer: CustomerModel? = null
+    var customer: CustomerModel? = null,
+
+    @Column
+    var photoUrl: String
+
 )
 
 
