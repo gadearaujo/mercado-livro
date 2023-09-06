@@ -6,6 +6,8 @@ import com.mercadolivro.controller.request.PutBookRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
 import com.mercadolivro.enums.BookStatus
 import com.mercadolivro.enums.CustomerStatus
+import com.mercadolivro.extension.controller.response.BookResponse
+import com.mercadolivro.extension.controller.response.CustomerResponse
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
 import java.awt.print.Book
@@ -38,5 +40,26 @@ fun PutBookRequest.toBookModel(previusValue: BookModel) : BookModel {
         status = previusValue.status,
         customer = previusValue.customer,
         photoUrl = previusValue.photoUrl
+    )
+}
+
+fun CustomerModel.toResponse(): CustomerResponse {
+    return CustomerResponse(
+        id = this.id,
+        name = this.name,
+        email = this.email,
+        status = this.status,
+        photoUrl = this.photoUrl
+    )
+}
+
+fun BookModel.toResponse(): BookResponse {
+    return BookResponse(
+        id = this.id,
+        name = this.name,
+        photoUrl = this.photoUrl,
+        price = this.price,
+        customer = this.customer,
+        status = this.status
     )
 }
