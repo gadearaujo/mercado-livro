@@ -6,8 +6,8 @@ import com.mercadolivro.controller.request.PutBookRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
 import com.mercadolivro.enums.BookStatus
 import com.mercadolivro.enums.CustomerStatus
-import com.mercadolivro.extension.controller.response.BookResponse
-import com.mercadolivro.extension.controller.response.CustomerResponse
+import com.mercadolivro.controller.response.BookResponse
+import com.mercadolivro.controller.response.CustomerResponse
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
 import java.awt.print.Book
