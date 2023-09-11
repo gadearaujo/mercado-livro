@@ -21,7 +21,10 @@ data class CustomerModel (
     var status: CustomerStatus,
 
     @Column
-    var photoUrl: String
+    var photoUrl: String,
+
+    @Column
+    var password: String
 
 )
 

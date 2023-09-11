@@ -7,4 +7,6 @@ interface CustomerRepository : CrudRepository<CustomerModel, Int>{
 
     fun findByNameContaining(name: String) : List<CustomerModel>
 
+    fun findByEmailContaining(email: String) : List<CustomerModel>
+
 }

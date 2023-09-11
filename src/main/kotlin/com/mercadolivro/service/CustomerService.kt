@@ -2,6 +2,7 @@ package com.mercadolivro.service
 
 import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.enums.Errors
+import com.mercadolivro.exception.BadRequestException
 import com.mercadolivro.exception.NotFoundException
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.repository.CustomerRepository
@@ -20,9 +21,13 @@ class CustomerService (
         return customerRepository.findAll().toList()
     }
 
+    fun create(customer : CustomerModel): CustomerModel {
 
-    fun create(customer : CustomerModel) {
-        customerRepository.save(customer)
+        if(customerRepository.findByEmailContaining(customer.email).isNotEmpty()) {
+            throw BadRequestException(Errors.ML202.message.format(customer.email), Errors.ML202.code)
+        } else {
+            return customerRepository.save(customer)
+        }
     }
 
     fun findById(id: Int): CustomerModel {

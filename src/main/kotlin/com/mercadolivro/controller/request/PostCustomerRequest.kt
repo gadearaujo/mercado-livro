@@ -5,11 +5,6 @@ import com.mercadolivro.model.CustomerModel
 
 data class PostCustomerRequest (
     var name: String,
-    var email: String
-) {
-
-    fun toCustomerModel () : CustomerModel {
-        return CustomerModel(name = this.name, email = this.email, status = CustomerStatus.ATIVO, photoUrl = "")
-    }
-
-}
+    var email: String,
+    var password: String
+)
