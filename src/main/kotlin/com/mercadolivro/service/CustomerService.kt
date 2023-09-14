@@ -4,9 +4,11 @@ import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.enums.Errors
 import com.mercadolivro.exception.BadRequestException
 import com.mercadolivro.exception.NotFoundException
+import com.mercadolivro.extension.toResponse
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CustomerService (
@@ -36,6 +38,14 @@ class CustomerService (
         }
     }
 
+    fun loginCustomer(email: String, password: String): List<CustomerModel> {
+
+        if(customerRepository.findByEmailAndPassword(email, password).isEmpty()) {
+            throw BadRequestException(Errors.ML203.message.format(email), Errors.ML203.code)
+        } else {
+            return customerRepository.findByEmailAndPassword(email, password).toList()
+        }
+    }
 
     fun update(customer: CustomerModel) {
        if (!customerRepository.existsById(customer.id!!)) {

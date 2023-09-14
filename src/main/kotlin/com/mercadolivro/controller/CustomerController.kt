@@ -30,6 +30,14 @@ class CustomerController (
         return customerService.findById(id).toResponse()
     }
 
+    @GetMapping("/login")
+    fun loginCustomer(
+        @RequestParam email: String,
+        @RequestParam password : String,
+    ): List<CustomerResponse> {
+        return customerService.loginCustomer(email, password).map { it.toResponse() }
+    }
+
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun update(@PathVariable id: Int, @RequestBody customer : PutCustomerRequest) {

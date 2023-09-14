@@ -50,7 +50,8 @@ fun CustomerModel.toResponse(): CustomerResponse {
         name = this.name,
         email = this.email,
         status = this.status,
-        photoUrl = this.photoUrl
+        photoUrl = this.photoUrl,
+        password = this.password
     )
 }
 
