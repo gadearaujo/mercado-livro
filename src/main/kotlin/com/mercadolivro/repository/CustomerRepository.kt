@@ -11,4 +11,6 @@ interface CustomerRepository : CrudRepository<CustomerModel, Int>{
 
     fun findByEmailAndPassword(email: String, password: String) :  List<CustomerModel>
 
+    fun existsByEmail(email: String): Boolean
+
 }
