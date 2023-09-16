@@ -13,6 +13,6 @@ data class PostCustomerRequest (
     @field:Email(message = "Email deve ser válido")
     var email: String,
 
-    @field:NotEmpty
+    @field:NotEmpty(message = "Email deve ser válido")
     var password: String
 )
