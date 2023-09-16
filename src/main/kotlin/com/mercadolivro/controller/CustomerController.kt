@@ -7,6 +7,7 @@ import com.mercadolivro.extension.toCustomerModel
 import com.mercadolivro.extension.toResponse
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.service.CustomerService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -22,7 +23,7 @@ class CustomerController (
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody request : PostCustomerRequest): CustomerModel {
+    fun create(@RequestBody @Valid request : PostCustomerRequest): CustomerModel {
       return customerService.create(request.toCustomerModel())
     }
     @GetMapping("/{id}")
