@@ -24,12 +24,7 @@ class CustomerService (
     }
 
     fun create(customer : CustomerModel): CustomerModel {
-
-        if(customerRepository.findByEmailContaining(customer.email).isNotEmpty()) {
-            throw BadRequestException(Errors.ML202.message.format(customer.email), Errors.ML202.code)
-        } else {
-            return customerRepository.save(customer)
-        }
+        return customerRepository.save(customer)
     }
 
     fun findById(id: Int): CustomerModel {
