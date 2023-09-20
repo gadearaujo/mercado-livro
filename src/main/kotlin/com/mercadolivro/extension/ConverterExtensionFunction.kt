@@ -13,12 +13,12 @@ import com.mercadolivro.model.CustomerModel
 import java.awt.print.Book
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
-    return CustomerModel(name = this.name, email = this.email, status = CustomerStatus.ATIVO, photoUrl = "", password = this.password)
+    return CustomerModel(name = this.name, email = this.email, status = CustomerStatus.ATIVO, photoUrl = this.photoUrl, password = this.password)
 }
 
 
 fun PutCustomerRequest.toCustomerModel(previousValue: CustomerModel): CustomerModel {
-    return CustomerModel(id= previousValue.id, name= this.name, email= this.email, status =  previousValue.status, photoUrl = "", password = this.password)
+    return CustomerModel(id= previousValue.id, name= this.name, email= this.email, status =  previousValue.status, photoUrl = this.photoUrl, password = this.password)
 }
 
 fun PostBookRequest.toBookModel(customer: CustomerModel) : BookModel {

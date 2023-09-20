@@ -12,5 +12,7 @@ data class PutCustomerRequest (
     var email: String,
 
     @field:NotEmpty(message = "Email deve ser válido")
-    var password: String
+    var password: String,
+
+    var photoUrl: ByteArray
 )

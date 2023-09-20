@@ -20,8 +20,9 @@ data class CustomerModel (
     @Enumerated(EnumType.STRING)
     var status: CustomerStatus,
 
-    @Column
-    var photoUrl: String,
+    @Lob
+    @Column(length = 1000)
+    var photoUrl: ByteArray,
 
     @Column
     var password: String

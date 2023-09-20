@@ -8,6 +8,7 @@ import com.mercadolivro.extension.toResponse
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
+import org.springframework.web.multipart.MultipartFile
 import java.util.*
 
 @Service
@@ -62,5 +63,18 @@ class CustomerService (
 
         return !customerRepository.existsByEmail(email)
 
+    }
+
+    fun setProfilePicture(id: Int, file: MultipartFile) {
+        println("file: $file")
+
+        val customerModel : CustomerModel = customerRepository.findById(id).orElseThrow()
+        customerModel.photoUrl = file.bytes
+        customerRepository.save(customerModel)
+    }
+
+    fun getProfilePicture(id: Int): ByteArray{
+        val user: CustomerModel = customerRepository.findById(id).orElseThrow()
+        return user.photoUrl
     }
 }
