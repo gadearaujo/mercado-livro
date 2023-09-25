@@ -37,6 +37,8 @@ class CustomerService (
     fun loginCustomer(email: String, password: String): List<CustomerModel> {
 
         if(customerRepository.findByEmailAndPassword(email, password).isEmpty()) {
+            println(email)
+            println(password)
             throw BadRequestException(Errors.ML203.message.format(email), Errors.ML203.code)
         } else {
             return customerRepository.findByEmailAndPassword(email, password).toList()

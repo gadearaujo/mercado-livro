@@ -10,7 +10,6 @@ import com.mercadolivro.controller.response.BookResponse
 import com.mercadolivro.controller.response.CustomerResponse
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
-import java.awt.print.Book
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(name = this.name, email = this.email, status = CustomerStatus.ATIVO, photoUrl = this.photoUrl, password = this.password)
@@ -27,7 +26,7 @@ fun PostBookRequest.toBookModel(customer: CustomerModel) : BookModel {
         price = this.price,
         status = BookStatus.ATIVO,
         customer = customer,
-        photoUrl = ""
+        photoUrl = this.photoUrl
         )
 }
 

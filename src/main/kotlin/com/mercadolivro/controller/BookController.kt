@@ -1,25 +1,27 @@
 package com.mercadolivro.controller
 
 import com.mercadolivro.controller.request.PostBookRequest
+import com.mercadolivro.controller.request.PostCustomerRequest
 import com.mercadolivro.controller.request.PutBookRequest
 import com.mercadolivro.controller.response.BookResponse
 import com.mercadolivro.extension.toBookModel
+import com.mercadolivro.extension.toCustomerModel
 import com.mercadolivro.extension.toResponse
+import com.mercadolivro.model.BookModel
+import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.service.BookService
 import com.mercadolivro.service.CustomerService
+import jakarta.validation.Valid
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
+import java.net.URI
 
 
 @RestController
@@ -31,9 +33,9 @@ class BookController(
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody request: PostBookRequest) {
+    fun create(@RequestBody request : PostBookRequest) : BookModel {
         val customer = customerService.findById(request.customerId)
-        bookService.create(request.toBookModel(customer))
+       return bookService.create(request.toBookModel(customer))
     }
 
     @GetMapping
@@ -42,7 +44,7 @@ class BookController(
     }
 
     @GetMapping("/active")
-    fun findActives(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<BookResponse> =
+    fun findActives(@PageableDefault(page = 0, size = 30) pageable: Pageable): Page<BookResponse> =
         bookService.findActives(pageable).map { it.toResponse() }
 
 
@@ -64,4 +66,41 @@ class BookController(
         bookService.update(book.toBookModel(bookSaved))
 
     }
+
+    @PostMapping(value= ["/{id}/book-picture"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+    fun setBookPicture(@PathVariable("id") id: Int, @RequestParam file: MultipartFile): ResponseEntity<Void> {
+
+        return try {
+            bookService.setBookPicture(id, file)
+            ResponseEntity
+                .created(URI("/book/${id}/book-picture"))
+                .build()
+        } catch(error: NoSuchElementException){
+            ResponseEntity
+                .notFound()
+                .build()
+        }
+    }
+
+    @GetMapping("/{id}/book-picture")
+    fun getBookPicture(@PathVariable("id") id: Int): ResponseEntity<Any> {
+
+        return try {
+            val image: ByteArray = bookService.getProfilePicture(id)
+            println(image)
+            return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(MediaType.IMAGE_JPEG_VALUE))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"${System.currentTimeMillis()}\"")
+                .body(image)
+
+
+
+        } catch(error: NoSuchElementException){
+            ResponseEntity
+                .notFound()
+                .build()
+        }
+
+    }
+
 }

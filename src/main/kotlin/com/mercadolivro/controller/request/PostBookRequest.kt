@@ -1,6 +1,8 @@
 package com.mercadolivro.controller.request
 
 import com.fasterxml.jackson.annotation.JsonAlias
+import jakarta.persistence.Column
+import jakarta.persistence.Lob
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
 import java.math.BigDecimal
@@ -15,5 +17,7 @@ data class PostBookRequest (
     var price: BigDecimal,
 
     @JsonAlias("customer_id")
-    var customerId: Int
+    var customerId: Int,
+
+    var photoUrl: ByteArray
 )

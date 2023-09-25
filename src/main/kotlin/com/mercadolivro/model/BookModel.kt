@@ -8,7 +8,7 @@ import java.math.BigDecimal
 
 @Entity(name = "book")
 
-data class BookModel (
+data class BookModel(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,11 @@ data class BookModel (
     @JoinColumn(name = "customer_id")
     var customer: CustomerModel? = null,
 
-    @Column
-    var photoUrl: String
+    @Lob
+    @Column(length = 1000)
+    var photoUrl: ByteArray,
 
-) {
+    ) {
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -39,12 +40,14 @@ data class BookModel (
             field = value
         }
 
-    constructor(id: Int? = null,
+    constructor(
+        id: Int? = null,
         name: String,
         price: BigDecimal,
         customer: CustomerModel? = null,
         status: BookStatus?,
-        photoUrl: String): this(id, name, price, customer, photoUrl) {
+        photoUrl: ByteArray
+    ): this(id, name, price, customer, photoUrl) {
             this.status = status
         }
 

@@ -9,13 +9,14 @@ import com.mercadolivro.repository.BookRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.web.multipart.MultipartFile
 
 @Service
 class BookService (
     val bookRepository: BookRepository
 ){
-    fun create(book: BookModel) {
-        bookRepository.save(book)
+    fun create(book: BookModel) : BookModel{
+       return bookRepository.save(book)
     }
 
     fun findAll(pageable: Pageable): Page<BookModel> {
@@ -50,5 +51,18 @@ class BookService (
         }
 
         bookRepository.saveAll(books)
+    }
+
+    fun setBookPicture(id: Int, file: MultipartFile) {
+        println("file: $file")
+
+        val bookModel : BookModel = bookRepository.findById(id).orElseThrow()
+        bookModel.photoUrl = file.bytes
+        bookRepository.save(bookModel)
+    }
+
+    fun getProfilePicture(id: Int): ByteArray {
+        val book: BookModel = bookRepository.findById(id).orElseThrow()
+        return book.photoUrl!!
     }
 }
