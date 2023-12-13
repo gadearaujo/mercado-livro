@@ -63,6 +63,6 @@ class BookService (
 
     fun getProfilePicture(id: Int): ByteArray {
         val book: BookModel = bookRepository.findById(id).orElseThrow()
-        return book.photoUrl!!
+        return book.photoUrl
     }
 }

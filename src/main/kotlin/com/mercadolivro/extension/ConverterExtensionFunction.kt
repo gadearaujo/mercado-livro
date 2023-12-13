@@ -49,7 +49,7 @@ fun CustomerModel.toResponse(): CustomerResponse {
         name = this.name,
         email = this.email,
         status = this.status,
-        photoUrl = this.photoUrl,
+        photo_url = this.photoUrl,
         password = this.password
     )
 }
@@ -58,7 +58,7 @@ fun BookModel.toResponse(): BookResponse {
     return BookResponse(
         id = this.id,
         name = this.name,
-        photoUrl = this.photoUrl,
+        photo_url = this.photoUrl,
         price = this.price,
         customer = this.customer,
         status = this.status

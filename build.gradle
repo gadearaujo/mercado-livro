@@ -28,7 +28,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
-	implementation "org.flywaydb:flyway-mysql"
 	implementation('com.sun.xml.bind:jaxb-ri:3.0.2') {
 		exclude group: 'com.sun.xml.bind', module: 'jaxb-release-documentation'
 		exclude group: 'com.sun.xml.bind', module: 'jaxb-samples'

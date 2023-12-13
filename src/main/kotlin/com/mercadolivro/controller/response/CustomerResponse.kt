@@ -12,7 +12,7 @@ data class CustomerResponse (
 
     var status: CustomerStatus,
 
-    var photoUrl: ByteArray,
+    var photo_url: ByteArray,
 
     var password: String? = ""
 )

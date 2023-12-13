@@ -14,7 +14,7 @@ data class BookResponse (
 
     var customer: CustomerModel? = null,
 
-    var photoUrl: ByteArray,
+    var photo_url: ByteArray,
 
     var status: BookStatus? = null,
 )

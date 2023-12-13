@@ -19,5 +19,6 @@ data class PostBookRequest (
     @JsonAlias("customer_id")
     var customerId: Int,
 
+    @JsonAlias("photo_url")
     var photoUrl: ByteArray
 )

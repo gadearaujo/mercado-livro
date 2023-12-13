@@ -26,6 +26,7 @@ data class BookModel(
 
     @Lob
     @Column(length = 1000)
+    @JoinColumn(name = "photo_url")
     var photoUrl: ByteArray,
 
     ) {

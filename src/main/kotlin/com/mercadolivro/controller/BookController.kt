@@ -69,7 +69,8 @@ class BookController(
 
     @PostMapping(value= ["/{id}/book-picture"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     fun setBookPicture(@PathVariable("id") id: Int, @RequestParam file: MultipartFile): ResponseEntity<Void> {
-
+        println("pegando o file")
+        println(file)
         return try {
             bookService.setBookPicture(id, file)
             ResponseEntity
@@ -87,6 +88,7 @@ class BookController(
 
         return try {
             val image: ByteArray = bookService.getProfilePicture(id)
+            println("pegando a imagem")
             println(image)
             return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(MediaType.IMAGE_JPEG_VALUE))
