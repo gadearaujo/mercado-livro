@@ -65,4 +65,8 @@ class BookService (
         val book: BookModel = bookRepository.findById(id).orElseThrow()
         return book.photoUrl
     }
+
+    fun findAllByIds(bookIds: Set<Int>): List<BookModel> {
+        return bookRepository.findAllById(bookIds).toList()
+    }
 }
