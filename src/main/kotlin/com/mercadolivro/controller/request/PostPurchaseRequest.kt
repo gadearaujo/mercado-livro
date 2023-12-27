@@ -10,7 +10,6 @@ data class PostPurchaseRequest (
     @field:Positive
     @JsonAlias("customer_id") // utilizando snake_case
     val customerId: Int,
-
     @field:NotNull
     @JsonAlias("book_ids") // utilizando snake_case
     val bookIds: Set<Int> // set se importa apenas com valores diferentes

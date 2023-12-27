@@ -5,7 +5,6 @@ import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.validation.EmailAvailable
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotEmpty
-
 data class PostCustomerRequest (
 
     @field:NotEmpty(message = "Nome não pode ser vazio")

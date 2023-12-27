@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotNull
 import java.math.BigDecimal
 
 data class PostBookRequest (
-
     // NotEmpty é mais para String
     @field:NotEmpty(message = "Email deve ser válido")
     var name: String,
