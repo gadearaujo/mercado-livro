@@ -27,7 +27,7 @@ data class PurchaseModel (
     @JoinTable(name = "purchase_book",
         joinColumns = [JoinColumn(name = "purchase_id")], // qual eh a coluna que referencia a essa tabela de compras
         inverseJoinColumns = [JoinColumn(name = "book_id")])
-    val books: List<BookModel>,
+    val books: MutableList<BookModel>,
 
     @Column
     val nfe: String? = null,
