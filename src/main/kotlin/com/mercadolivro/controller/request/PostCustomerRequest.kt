@@ -14,7 +14,7 @@ data class PostCustomerRequest (
     @EmailAvailable
     var email: String,
 
-    @field:NotEmpty(message = "Email deve ser válido")
+    @field:NotEmpty(message = "Senha deve ser informada")
     var password: String,
 
     var photoUrl: ByteArray
