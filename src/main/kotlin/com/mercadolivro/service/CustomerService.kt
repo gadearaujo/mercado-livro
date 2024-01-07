@@ -5,13 +5,11 @@ import com.mercadolivro.enums.Errors
 import com.mercadolivro.enums.Profile
 import com.mercadolivro.exception.BadRequestException
 import com.mercadolivro.exception.NotFoundException
-import com.mercadolivro.extension.toResponse
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.repository.CustomerRepository
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import java.util.*
 
 @Service
 class CustomerService(

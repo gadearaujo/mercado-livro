@@ -1,7 +1,5 @@
 package com.mercadolivro.controller.request
 
-import com.mercadolivro.enums.CustomerStatus
-import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.validation.EmailAvailable
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotEmpty

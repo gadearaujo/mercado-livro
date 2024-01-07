@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile
 
 @Service
 class BookService (
-    val bookRepository: BookRepository
+    private val bookRepository: BookRepository
 ){
     fun create(book: BookModel) : BookModel{
        return bookRepository.save(book)

@@ -1,17 +1,13 @@
 package com.mercadolivro.controller
 
 import com.mercadolivro.controller.request.PostBookRequest
-import com.mercadolivro.controller.request.PostCustomerRequest
 import com.mercadolivro.controller.request.PutBookRequest
 import com.mercadolivro.controller.response.BookResponse
 import com.mercadolivro.extension.toBookModel
-import com.mercadolivro.extension.toCustomerModel
 import com.mercadolivro.extension.toResponse
 import com.mercadolivro.model.BookModel
-import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.service.BookService
 import com.mercadolivro.service.CustomerService
-import jakarta.validation.Valid
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
